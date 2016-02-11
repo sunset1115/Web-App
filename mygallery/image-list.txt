@@ -1,0 +1,5 @@
+    boots.jpg;
+    pants.jpg;
+    shirt.jpg;
+    shirt2.jpg;
+    shirt3.jpg

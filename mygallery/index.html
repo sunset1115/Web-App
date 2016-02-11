@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+	    <meta charset="UTF-8">
+	    <title>Gallery</title>
+        <link href="./css/normalize.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/main.css">
+        <link rel="stylesheet" href="./css/modal.css">
+
+        <script src="./angular/angular.min.js"></script>
+        <script src="./angular/ui-bootstrap-tpls-1.1.2.js"></script>
+	</head>
+	<body ng-app="img-gallery" ng-controller="MainController">
+        <div>
+            <form class="image-form" ng-submit="searchImg()">
+                <input type="text" placeholder="Name" ng-model="title"><br>
+
+            </form>
+            <div id="wrapper">
+                <ul id="gallery">
+
+                    <!--<div ng-repeat="img in imgs | orderBy: '-added'">-->
+
+                    <div ng-repeat="img in imgs">
+                        <li ng-click="showImage(img.fname);">
+                            <img src= {{img.image_path}} alt="">
+                            <br>
+                            <h3>filename: {{img.fname}}</h3>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+        <div id="mymodal" class="ng-modal modal-hide">
+            <div class="ng-modal-dialog">
+                <div class="ng-modal-title">
+                    <h3 >{{modalTitle}}</h3>                    
+                </div>
+                <div class="ng-modal-dialog-content">
+                    <div class="prev" ng-click="prevImage()">
+                        prev
+                    </div>
+                    <div>
+                        <img ng-src="{{selImagUrl}}"/>
+                    </div>
+                    <div class="next" ng-click="nextImage()">
+                        next
+                    </div>
+                </div>
+                <div width="100%" style="text-align: center;">
+                    <button type="button" ng-click="cancel()">Close</button>                
+                </div>
+            </div>
+        </div>
+
+        <script src="app.js"></script>
+	</body>
+</html>
