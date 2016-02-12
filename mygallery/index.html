@@ -7,21 +7,16 @@
         <link rel="stylesheet" href="./css/main.css">
         <link rel="stylesheet" href="./css/modal.css">
 
-        <script src="./angular/angular.min.js"></script>
-        <script src="./angular/ui-bootstrap-tpls-1.1.2.js"></script>
+        <script src="./angular/angular.js"></script>        
 	</head>
 	<body ng-app="img-gallery" ng-controller="MainController">
         <div>
-            <form class="image-form" ng-submit="searchImg()">
-                <input type="text" placeholder="Name" ng-model="title"><br>
-
+            <form class="image-form" style="color: white;">
+                File search: <input type="text" placeholder="Name" ng-model="title"><br>
             </form>
             <div id="wrapper">
                 <ul id="gallery">
-
-                    <!--<div ng-repeat="img in imgs | orderBy: '-added'">-->
-
-                    <div ng-repeat="img in imgs">
+                    <div ng-repeat="img in imgs | filter:title">
                         <li ng-click="showImage(img.fname);">
                             <img src= {{img.image_path}} alt="">
                             <br>
