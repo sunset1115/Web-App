@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>MyGravity Rewards</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/assets/favicon.ico">
+    <!--[if IE]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-history-api/4.2.4/history.min.js"></script>
+    <![endif]-->
+   
+  </head>
+
+  <body onclick='body_click.trigger("clicked")'>
+    <navbar></navbar>
+    <app-main></app-main>
+    <feedback></feedback>
+
+
+    <!-- for production strip this out and precompile -->
+
+    <!-- riot tags -->
+    <script type="riot/tag" src="/views/app/navbar.tag"></script>    
+    <script type="riot/tag" src="/views/app/navbar-more.tag"></script>
+    <script type="riot/tag" src="/views/app/app-main.tag"></script>
+    <script type="riot/tag" src="/views/app/app-navi.tag"></script>
+    <script type="riot/tag" src="/views/app/app-help.tag"></script>
+    <script type="riot/tag" src="/views/app/footer.tag"></script>
+    <script type="riot/tag" src="/views/navigation/landing.tag"></script>     
+    
+    <script type="riot/tag" src="/views/reports/dashboard.tag"></script>    
+    <script type="riot/tag" src="/views/reports/points-report.tag"></script>  
+    <script type="riot/tag" src="/views/reports/popularity-report.tag"></script>  
+    <script type="riot/tag" src="/views/reports/stores-dropdown.tag"></script>    
+    <script type="riot/tag" src="/views/reports/stats/common/stats-header.tag"></script>    
+    <script type="riot/tag" src="/views/reports/stats/visits.tag"></script>    
+    <script type="riot/tag" src="/views/reports/stats/members.tag"></script>    
+    
+    <script type="riot/tag" src="/views/support/feedback-fab.tag"></script>   
+    <script type="riot/tag" src="/views/support/feedback-card.tag"></script>    
+    <script type="riot/tag" src="/views/surveys/nps.tag"></script>
+    <script type="riot/tag" src="/views/surveys/cs.tag"></script>
+
+    <!-- material design -->
+    <script type="riot/tag" src="/views/material/material-textarea.tag"></script>   
+    <script type="riot/tag" src="/views/material/material-tooltip.tag"></script>   
+    <script type="riot/tag" src="/views/material/material-spinner.tag"></script>   
+    <script type="riot/tag" src="/views/material/material-dropdown.tag"></script>  
+
+    <!-- graphs -->
+    <script type="riot/tag" src="/views/common/graphs/highstock-area-chart.tag"></script>   
+    <script type="riot/tag" src="/views/common/graphs/highstock-bar-chart.tag"></script>   
+    <script type="riot/tag" src="/views/common/graphs/highstock-area-stack-chart.tag"></script>
+    <script type="riot/tag" src="/views/common/graphs/highstock-popularity-area-chart.tag"></script>
+    <script type="riot/tag" src="/views/common/graphs/highstock-navigator.tag"></script>
+    <script type="riot/tag" src="/views/common/graphs/highstock-popularity-area-mini-chart.tag"></script>    
+
+    <!-- helpers -->
+    <script type="riot/tag" src="/views/common/helpers/raw-html.tag"></script>
+    <script type="riot/tag" src="/views/common/helpers/raw-tagname.tag"></script>
+
+    <!-- svg tags -->
+    <script type="riot/tag" src="/assets/svg-tags/icons-reports.tag"></script>
+    <script type="riot/tag" src="/assets/svg-tags/icons-launchpad.tag"></script>
+    <script type="riot/tag" src="/assets/svg-tags/icons-actioncentre.tag"></script>
+    <script type="riot/tag" src="/assets/svg-tags/icons-logo.tag"></script>
+
+    <!-- stores -->
+    <script src='/stores/authstore.js'></script>    
+    <script src='/stores/feedbackstore.js'></script> 
+    <script src='/stores/dashboardstore.js'></script> 
+    <script src='/stores/reportdatastore.js'></script>
+    <script src='/stores/surveystore.js'></script>
+    <script src='/stores/schemestore.js'></script>
+    <script src='/stores/popularitydatastore.js'></script>
+
+    <!-- vendor -->
+    <script src="https://cdn.rawgit.com/riot/riot/master/riot+compiler.min.js"></script>
+    <script src='/vendor/riotcontrol.js'></script>
+    <script src='/vendor/js.cookie.js'></script>
+
+    <!-- helpers -->
+    <script src='/helpers/utils.js'></script>
+    <script src='/helpers/storage.js'></script>
+    <script src='/helpers/sha1.js'></script>
+    <script src='/helpers/dispatcher.js'></script>
+
+    <!-- mount this app -->
+    <script>
+
+      // Register Stores
+      var authStore = new AuthStore() // Create a store instance.
+      RiotControl.addStore(authStore) // Register the store in central dispatch.
+
+      var feedbackStore = new FeedbackStore() // Create a store instance.
+      RiotControl.addStore(feedbackStore) // Register the store in central dispatch.
+
+      var dashboardStore = new DashboardStore() // Create a store instance.
+      RiotControl.addStore(dashboardStore) // Register the store in central dispatch.
+
+      var reportDataStore = new ReportDataStore() // Create a store instance.
+      RiotControl.addStore(reportDataStore) // Register the store in central dispatch.
+
+      var surveyStore = new SurveyStore() // Create a store instance.
+      RiotControl.addStore(surveyStore) // Register the store in central dispatch.
+
+      var schemeStore = new SchemeStore() // Create a store instance.
+      RiotControl.addStore(schemeStore) // Register the store in central dispatch.
+
+      RiotControl.trigger('app_open')
+
+      function BodyClick(){
+        // emits an event everyone the user clicks anywhere, useful for dismissing things on a user click
+        riot.observable(this)     
+        var methodsToExec = []
+        
+        this.addMethodToExec = function(method){
+          methodsToExec.push(method)
+        }
+
+        this.on('clicked', function(){
+          // this method executes the methods queued and removes them from the queue
+          methodsToExec.forEach(function(method){          
+            method()
+            methodsToExec.splice(methodsToExec.indexOf(this), 1)          
+          })                    
+        })
+      }
+
+      body_click = new BodyClick()
+
+      riot.compile(function() {        
+        riot.route.base('/')
+        riot.mount('navbar, app-main, app-navi, app-help, footer')                       
+        riot.route.start(true)
+      })
+    </script>
+  
+    <style>            
+      html, body{ 
+        margin: 0;
+        position:absolute;
+        top:0;
+        left:0;
+        font-family:Lato, sans-serif !important;
+        font-size:100% !important;
+        margin:0px;
+        padding:0px;
+        line-height: 1.5;
+        color: #333;
+        font-weight: 300 !important;
+        display:block;
+        min-height:100%;
+        max-width: 100%;
+      }
+    </style>
+  </body>
+  <footer></footer>
+
+
+  <!-- material design -->
+  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+
+
+  <!-- high charts -->
+  <script src="/vendor/highstock.4.2.1.min.js"></script>  
+
+  <!-- fonts -->
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'/>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,400,700'>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500'>
+  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.deep_orange-red.min.css">    
+</html>
