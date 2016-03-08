@@ -20,6 +20,3 @@ There are some projects of sunset.co.
 ## importio ##
 	This is wordpress plugin for crawler.
 	This used importio in order to get real tickets data from Livefootballtickets.com
-		
-
-#Alexey && Leonid#
