@@ -11,7 +11,7 @@ There are some projects of sunset.co.
 ## book store ##
 	This is RiotJS app.
 	This is made of AngularJS and RiotJS for booking store.
-	book store is simple library for any person.
+	book store is simple library with Rest api for any person.
 
 ## mygallery ##
 	This is AngualrJS gallery app.
