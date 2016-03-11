@@ -5,6 +5,7 @@ There are some projects of sunset.co.
 ## b2evolution ##
 	This is web site based on b2evolution framework.
 	b2evolution is very useful and mordern CMS framework.
+	This has many api such as paypal gateway, Google Map, import.io
 	You can install and use it similar with Wordpress.
 
 ## book store ##
@@ -19,4 +20,5 @@ There are some projects of sunset.co.
 	
 ## importio ##
 	This is wordpress plugin for crawler.
+	import.io api integrated it in order to get real time tickets information from other sites.
 	This used importio in order to get real tickets data from Livefootballtickets.com
