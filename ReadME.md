@@ -22,3 +22,19 @@ There are some projects of sunset.co.
 	This is wordpress plugin for crawler.
 	import.io api integrated it in order to get real time tickets information from other sites.
 	This used importio in order to get real tickets data from Livefootballtickets.com
+
+## AngularMaterialStater ##
+	This is AngularMaterialDashboard.
+	This use d3.js and highcharts to visualize real time data from server.
+	This inclucds three pages such login, service and auth.
+	
+## wpConcierge ##
+	This is wordpress plugin for concierge live chat function.
+	Users can use it to implement live chat, such as text chat, call chat and video chat, by clicking simple button in any page of your site.
+	This plugin uses the chat sdk of https://live.gotoassist.com/explore-sdk/.
+	Before you use it, you have to login and get app-key from this site.
+
+## js-doc-check ##
+	This is wordpress plugin for calculating the words to include in documents such as .pdf, .txt, .doc and .docs.
+	Also it integrated the price along with the words count to paypal payments
+	This plugin wants to install "Quick Paypal Payment" plugin with it.
