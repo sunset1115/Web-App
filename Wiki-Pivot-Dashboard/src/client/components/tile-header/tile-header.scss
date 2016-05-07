@@ -1,0 +1,22 @@
+@import '../../imports';
+
+.tile-header {
+  @extend %module-title;
+
+  .title {
+    //font-size: 13px;
+    //text-transform: none;
+  }
+
+  .icons {
+    position: absolute;
+    top: 1px;
+    right: 8px;
+
+    .icon {
+      display: inline-block;
+      padding: 10px 0;
+      cursor: pointer;
+    }
+  }
+}

@@ -17,6 +17,11 @@ There are some projects of sunset.co.
 	This is AngualrJS gallery app.
 	You can use this in order to displaying image files in any folder.
 	Image files are listed in a json file.
+
+## wiki-pivot-dashboard ##
+	This is react.js web app for analyzing wiki data.
+	This used the druid.io to get real-time data.
+	This app is based on express and node.js server.
 	
 ## importio ##
 	This is wordpress plugin for crawler.

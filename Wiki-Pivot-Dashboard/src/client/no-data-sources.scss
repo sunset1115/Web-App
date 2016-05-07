@@ -1,0 +1,38 @@
+@import '../../node_modules/laborer/common/style/reset';
+@import '../../node_modules/laborer/common/style/sanity';
+@import '../../node_modules/laborer/common/style/open-sans-regular';
+@import '../../node_modules/laborer/common/style/open-sans-600';
+@import 'imports';
+
+html,
+body {
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  overflow: hidden;
+}
+
+* {
+  user-select: none;
+}
+
+.no-data-sources {
+  margin-top: 280px;
+  text-align: center;
+  font-size: 16px;
+  color: $text-light;
+
+  .icon {
+    display: inline-block;
+    margin-bottom: 6px;
+    width: 42px;
+
+    svg {
+      width: 42px;
+    }
+  }
+
+  p {
+    display: block;
+  }
+}

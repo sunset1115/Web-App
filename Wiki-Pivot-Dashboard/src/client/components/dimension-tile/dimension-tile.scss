@@ -1,0 +1,156 @@
+@import '../../imports';
+
+$checkbox-width: 20px;
+$measure-width: 80px;
+$search-box-height: 26px;
+$search-box-gap: 3px;
+$folder-box-height: 32px;
+
+.dimension-tile {
+  @extend %module;
+  @extend %white-shadow;
+  min-height: 94px;
+  overflow-y: hidden;
+
+  .tile-header {
+    height: $pin-title-height;
+  }
+
+  .search-box {
+    position: absolute;
+    top: $pin-title-height;
+    left: 0;
+    right: 0;
+    height: $search-box-height;
+    padding: 0 $tile-padding-h;
+    margin-bottom: 4px;
+
+    .clearable-input {
+      @extend %input-cont-inset;
+      width: 100%;
+      height: $search-box-height;
+      padding-left: 6px;
+
+      .clear {
+        top: 3px;
+      }
+    }
+  }
+
+  .rows {
+    position: absolute;
+    top: $pin-title-height;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    overflow: auto;
+  }
+
+  &.has-search .rows {
+    top: $pin-title-height + $search-box-height + $search-box-gap;
+  }
+
+  &.has-folder .rows {
+    bottom: $folder-box-height;
+  }
+
+  .folder {
+    @include pin-bottom($folder-box-height);
+    cursor: pointer;
+    color: $brand;
+    padding-left: 12px;
+    padding-top: 9px;
+    z-index: 2;
+    border-top: 1px solid $border-super-light;
+
+    svg {
+      width: 11px;
+      margin-right: 6px;
+      margin-top: 2px;
+
+      path {
+        fill: $brand;
+      }
+    }
+
+    &.folded svg {
+      margin-top: 1px;
+      transform: rotate(180deg);
+    }
+
+    &:hover {
+      background: $background-lightest;
+    }
+  }
+
+  .row {
+    height: $pin-item-height;
+    cursor: pointer;
+
+    &:hover {
+      background: $hover;
+    }
+
+    &:last-child {
+      margin-bottom: 12px;
+    }
+
+    &.not-selected {
+      color: $text-lighterish;
+    }
+
+    .highlight-controls {
+      position: absolute;
+      top: -29px;
+      right: 1px;
+      z-index: 4;
+    }
+
+    &:nth-child(1),
+    &:nth-child(2) {
+      .highlight-controls {
+        top: auto;
+        bottom: -34px;
+      }
+    }
+  }
+
+  .segment-value {
+    @include unpin-right($measure-width);
+
+    left: $tile-padding-h;
+    overflow: hidden;
+    white-space: nowrap;
+
+    .checkbox {
+
+    }
+
+    .label {
+      display: inline-block;
+      vertical-align: top;
+      padding-top: 5px;
+    }
+  }
+
+  .measure-value {
+    @include pin-right($measure-width);
+
+    text-align: right;
+    padding-top: 5px;
+    padding-right: $tile-padding-h;
+    white-space: nowrap;
+  }
+
+  .message {
+    padding: 4px 10px;
+    color: $text-light;
+    font-style: italic;
+  }
+
+  .loader,
+  .query-error {
+    @include pin-full;
+  }
+}

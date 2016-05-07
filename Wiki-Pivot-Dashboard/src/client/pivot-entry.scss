@@ -1,0 +1,25 @@
+@import '../../node_modules/laborer/common/style/reset';
+@import '../../node_modules/laborer/common/style/sanity';
+@import '../../node_modules/laborer/common/style/open-sans-regular';
+@import '../../node_modules/laborer/common/style/open-sans-600';
+
+html,
+body {
+  height: 100%;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #444;
+  overflow: hidden;
+}
+
+.app-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  * {
+    user-select: none;
+  }
+}

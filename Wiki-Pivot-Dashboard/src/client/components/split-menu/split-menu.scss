@@ -1,0 +1,109 @@
+@import '../../imports';
+
+$bottom-margin: 12px;
+$title-margin: 6px;
+
+.split-menu {
+  padding: 16px 10px 10px 10px;
+
+  .button-group {
+    margin-bottom: $bottom-margin;
+
+    .button-group-title {
+      @extend %input-top-label;
+      margin-bottom: $title-margin;
+    }
+
+    li {
+      @extend %input-cont;
+      border-radius: 0;
+      display: inline-block;
+      cursor: pointer;
+      width: 20%;
+      text-align: center;
+      padding: 6px 2px;
+      border-right: 0;
+
+      &:first-child {
+        border-top-left-radius: $corner;
+        border-bottom-left-radius: $corner;
+      }
+
+      &:last-child {
+        border-right: 1px solid $border-light;
+        border-top-right-radius: $corner;
+        border-bottom-right-radius: $corner;
+      }
+
+      &.selected {
+        @extend %input-selected;
+      }
+    }
+  }
+
+  .dropdown {
+    margin-bottom: $bottom-margin;
+    pointer-events: none;
+
+    .dropdown-label {
+      @extend %input-top-label;
+      margin-bottom: $title-margin;
+    }
+
+    .selected-item {
+      @extend %input-cont;
+      display: block;
+      padding: 7px 6px;
+      pointer-events: auto;
+    }
+
+    .caret-icon {
+      position: absolute;
+      right: 9px;
+      bottom: 10px;
+    }
+
+    .dropdown-menu {
+      width: 100%;
+      pointer-events: auto;
+    }
+  }
+
+  .sort-direction {
+    .dropdown {
+      margin-right: 38px;
+    }
+
+    .direction {
+      @extend %input-cont;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 32px;
+      height: 29px;
+
+      svg {
+        position: absolute;
+        height: 13px;
+        top: 7px;
+        left: 11px;
+      }
+
+      &.ascending svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .button-bar {
+    .ok {
+      @extend %button-primary;
+      min-width: 60px;
+      margin-right: 8px;
+    }
+
+    .cancel {
+      @extend %button-secondary;
+    }
+  }
+}
